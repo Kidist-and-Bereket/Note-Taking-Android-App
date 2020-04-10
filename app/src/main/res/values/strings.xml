@@ -1,3 +1,15 @@
 <resources>
-    <string name="app_name">NoteTakingAndroidApp</string>
+    <string name="app_name">Note Taking</string>
+    <string name="title_activity_list_of_note">ListOfNoteActivity</string>
+
+    <string name="designed_and_developed_by">Designed and Developed by:</string>
+    <string name="developer_name_1">Kidist Birhanu</string>
+    <string name="developer_name_2">Bereket Tolcha</string>
+    <string name="home_page_banner">Note taking app Banner</string>
+    <string name="text_manage_note">Manage Note</string>
+    <string name="btn_save">Save</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="text_id">Id:</string>
+    <string name="text_created_date">Created Date:</string>
+    <string name="text_content">Content:</string>
 </resources>
