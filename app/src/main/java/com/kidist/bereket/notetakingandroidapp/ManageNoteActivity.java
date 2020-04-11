@@ -31,6 +31,7 @@ public class ManageNoteActivity extends Activity implements View.OnClickListener
     Button btnSave, btnCancel;
 
     LinearLayout linearLayout;
+    String NoteID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,11 @@ public class ManageNoteActivity extends Activity implements View.OnClickListener
         btnCancel.setOnClickListener(this);
 
         context = this;
+
+        NoteID = getIntent().getStringExtra("NoteID");
+        if(NoteID != null && !NoteID.equals("")){
+            new AgentAsyncTask().execute("Load", NoteID);
+        }
     }
 
     @Override
@@ -56,7 +62,12 @@ public class ManageNoteActivity extends Activity implements View.OnClickListener
                 Snackbar.make(linearLayout, "Please type something before saving.", Snackbar.LENGTH_LONG).show();
             }
             else{
-                new AgentAsyncTask().execute(edtNote.getText().toString());
+                if(NoteID != null && !NoteID.equals("")){
+                    new AgentAsyncTask().execute("Update", NoteID, edtNote.getText().toString());
+                }
+                else{
+                    new AgentAsyncTask().execute("Add", edtNote.getText().toString());
+                }
                 //finish();
                 Intent intent = new Intent(context, ListOfNoteActivity.class);
                 startActivity(intent);
@@ -69,23 +80,41 @@ public class ManageNoteActivity extends Activity implements View.OnClickListener
 
     private class AgentAsyncTask extends AsyncTask<String, Void, Integer> {
 
+        NoteEntity noteEntity = new NoteEntity();
         @Override
         protected Integer doInBackground(String... params) {
             AppDatabase db = Room.databaseBuilder(getApplicationContext(),
                     AppDatabase.class, "NotesDB").build();
 
-            NoteEntity noteEntity = new NoteEntity();
-            noteEntity.CreatedDate = new Date();
-            noteEntity.Content = params[0];
+            switch (params[0]) {
+                case "Add":
+                    noteEntity.CreatedDate = new Date();
+                    noteEntity.Content = params[1];
 
-            db.noteDAO().InsertNote(noteEntity);
+                    db.noteDAO().InsertNote(noteEntity);
+                    noteEntity = null;
+                    break;
+                case "Load":
+                    noteEntity = db.noteDAO().GetSingleNote(Integer.parseInt(params[1]));
+                    break;
+                case "Update":
+                    noteEntity.Id = Integer.parseInt(params[1]);
+                    noteEntity.CreatedDate = new Date();
+                    noteEntity.Content = params[2];
+
+                    db.noteDAO().UpdateNote(noteEntity);
+                    noteEntity = null;
+                    break;
+            }
 
             return 0;
         }
 
         @Override
         protected void onPostExecute(Integer agentsCount) {
-
+            if(noteEntity != null){
+                edtNote.setText(noteEntity.Content);
+            }
         }
     }
 }

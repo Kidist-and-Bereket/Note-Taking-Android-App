@@ -36,6 +36,7 @@ public class NoteListAdapter extends ArrayAdapter<NoteEntity> {
         if(noteEntity != null){
             // Populate the data into the template view using the data object
             tvwCreatedDate.setText(noteEntity.CreatedDate.toString());
+            tvwCreatedDate.setTag(noteEntity.Id);
             tvwContent.setText(noteEntity.Content);
         }
 
