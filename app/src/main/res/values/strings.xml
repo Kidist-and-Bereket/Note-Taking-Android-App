@@ -12,4 +12,7 @@
     <string name="text_id">Id:</string>
     <string name="text_created_date">Created Date:</string>
     <string name="text_content">Content:</string>
+    <string name="text_edit">Edit</string>
+    <string name="text_share">Share</string>
+    <string name="text_delete">Delete</string>
 </resources>

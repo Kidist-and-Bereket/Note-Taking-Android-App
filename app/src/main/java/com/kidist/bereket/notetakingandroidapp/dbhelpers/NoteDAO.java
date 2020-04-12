@@ -12,7 +12,7 @@ import java.util.List;
 
 @Dao
 public interface NoteDAO {
-    @Query("SELECT Id, CreatedDate, Content FROM NoteEntity ORDER BY CreatedDate")
+    @Query("SELECT Id, CreatedDate, Content FROM NoteEntity ORDER BY Id DESC")
     List<NoteEntity> GetAll();
 
     @Query("SELECT Id, CreatedDate, Content FROM NoteEntity WHERE Id = :paramId")

@@ -55,21 +55,7 @@ public class ListOfNoteActivity extends AppCompatActivity {
     }
 
     public void LoadNotes(){
-
         lstvwNoteList = (ListView) findViewById(R.id.lstvwNoteList);
-        lstvwNoteList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position,
-                                    long id) {
-                TextView tvwCreatedDate = view.findViewById(R.id.tvwCreatedDate);
-                String noteID = tvwCreatedDate.getTag().toString();
-
-                Intent intent = new Intent(context, ManageNoteActivity.class);
-                intent.putExtra("NoteID", noteID);
-                startActivity(intent);
-            }
-        });
-
         db = Room.databaseBuilder(this,
                 AppDatabase.class, "NotesDB").build();
 
