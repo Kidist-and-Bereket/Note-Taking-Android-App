@@ -25,6 +25,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.facebook.android:facebook-share:5.15.3'
+
     def room_version = "2.2.5"
 
     implementation "androidx.room:room-runtime:$room_version"
