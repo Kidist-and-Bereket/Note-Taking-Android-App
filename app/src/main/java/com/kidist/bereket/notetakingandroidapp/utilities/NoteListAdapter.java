@@ -18,6 +18,7 @@ import androidx.room.Room;
 
 import com.kidist.bereket.notetakingandroidapp.ListOfNoteActivity;
 import com.kidist.bereket.notetakingandroidapp.ManageNoteActivity;
+import com.kidist.bereket.notetakingandroidapp.NoteSharingActivity;
 import com.kidist.bereket.notetakingandroidapp.R;
 import com.kidist.bereket.notetakingandroidapp.dbhelpers.AppDatabase;
 import com.kidist.bereket.notetakingandroidapp.entities.NoteEntity;
@@ -63,6 +64,18 @@ public class NoteListAdapter extends ArrayAdapter<NoteEntity> {
                 String noteID = tvwCreatedDate.getTag().toString();
 
                 Intent intent = new Intent(innerContext, ManageNoteActivity.class);
+                intent.putExtra("NoteID", noteID);
+                innerContext.startActivity(intent);
+            }
+        });
+
+        ImageButton btnShare = convertView.findViewById(R.id.btnShare);
+        btnShare.setOnClickListener(new AdapterView.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String noteID = tvwCreatedDate.getTag().toString();
+
+                Intent intent = new Intent(innerContext, NoteSharingActivity.class);
                 intent.putExtra("NoteID", noteID);
                 innerContext.startActivity(intent);
             }
