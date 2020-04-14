@@ -48,7 +48,7 @@ public class NoteListAdapter extends ArrayAdapter<NoteEntity> {
 
         // Lookup view for data population
         final TextView tvwCreatedDate = (TextView) convertView.findViewById(R.id.tvwCreatedDate);
-        TextView tvwContent = (TextView) convertView.findViewById(R.id.tvwContent);
+        final TextView tvwContent = (TextView) convertView.findViewById(R.id.tvwContent);
 
         if(noteEntity != null){
             // Populate the data into the template view using the data object
@@ -73,10 +73,10 @@ public class NoteListAdapter extends ArrayAdapter<NoteEntity> {
         btnShare.setOnClickListener(new AdapterView.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String noteID = tvwCreatedDate.getTag().toString();
+                String noteContent = tvwContent.getText().toString();
 
                 Intent intent = new Intent(innerContext, NoteSharingActivity.class);
-                intent.putExtra("NoteID", noteID);
+                intent.putExtra("NoteContent", noteContent);
                 innerContext.startActivity(intent);
             }
         });

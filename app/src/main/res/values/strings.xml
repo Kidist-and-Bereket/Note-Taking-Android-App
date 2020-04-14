@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Note Taking</string>
+    <string name="facebook_app_id">174404386962734</string>
+
     <string name="title_activity_list_of_note">ListOfNoteActivity</string>
 
     <string name="designed_and_developed_by">Designed and Developed by:</string>
