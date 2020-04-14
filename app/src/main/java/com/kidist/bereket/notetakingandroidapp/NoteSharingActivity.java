@@ -24,7 +24,7 @@ import java.io.IOException;
 
 public class NoteSharingActivity extends Activity implements View.OnClickListener {
 
-    Button btnShareFacebook, btnSendEmail;
+    Button btnShareFacebook, btnSendEmail, btnShareTwitter;
     String NoteCreatedDate, NoteContentToShare;
 
     @Override
@@ -36,6 +36,8 @@ public class NoteSharingActivity extends Activity implements View.OnClickListene
         btnShareFacebook.setOnClickListener(this);
         btnSendEmail = findViewById(R.id.btnSendEmail);
         btnSendEmail.setOnClickListener(this);
+        btnShareTwitter = findViewById(R.id.btnShareTwitter);
+        btnShareTwitter.setOnClickListener(this);
 
         NoteCreatedDate = getIntent().getStringExtra("NoteCreatedDate");
         NoteContentToShare = getIntent().getStringExtra("NoteContent");
@@ -63,6 +65,9 @@ public class NoteSharingActivity extends Activity implements View.OnClickListene
         else if(v.getId() == btnSendEmail.getId()){
             String subject = "Note taken on " + NoteCreatedDate;
             GeneralHelper.SendEmail(this, new String[]{""}, new String[]{""}, subject, NoteContentToShare);
+        }
+        else if(v.getId() == btnShareTwitter.getId()){
+            GeneralHelper.GetTwitterIntentAppOrWebsite(this, NoteContentToShare);
         }
     }
 
