@@ -5,10 +5,12 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,13 +18,14 @@ import android.widget.Toast;
 
 import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareDialog;
+import com.kidist.bereket.notetakingandroidapp.utilities.GeneralHelper;
 
 import java.io.IOException;
 
 public class NoteSharingActivity extends Activity implements View.OnClickListener {
 
-    Button btnShareFacebook;
-    String NoteContentToShare;
+    Button btnShareFacebook, btnSendEmail;
+    String NoteCreatedDate, NoteContentToShare;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +34,10 @@ public class NoteSharingActivity extends Activity implements View.OnClickListene
 
         btnShareFacebook = findViewById(R.id.btnShareFacebook);
         btnShareFacebook.setOnClickListener(this);
+        btnSendEmail = findViewById(R.id.btnSendEmail);
+        btnSendEmail.setOnClickListener(this);
 
+        NoteCreatedDate = getIntent().getStringExtra("NoteCreatedDate");
         NoteContentToShare = getIntent().getStringExtra("NoteContent");
     }
 
@@ -54,22 +60,10 @@ public class NoteSharingActivity extends Activity implements View.OnClickListene
                 e.printStackTrace();
             }
         }
+        else if(v.getId() == btnSendEmail.getId()){
+            String subject = "Note taken on " + NoteCreatedDate;
+            GeneralHelper.SendEmail(this, new String[]{""}, new String[]{""}, subject, NoteContentToShare);
+        }
     }
 
-    private Bitmap ChangeGivenTextToBitmap(String text) throws IOException {
-        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paint.setTextSize((float) 40);
-        paint.setColor(Color.WHITE);
-        paint.setTextAlign(Paint.Align.LEFT);
-
-        float baseline = -paint.ascent(); // ascent() is negative
-        int width = (int) (paint.measureText(text) + 0.5f); // round
-        int height = 350;//(int) (baseline + paint.descent() + 0.5f);
-
-        Bitmap image = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(image);
-        canvas.drawText(text, 0, baseline, paint);
-
-        return image;
-    }
 }

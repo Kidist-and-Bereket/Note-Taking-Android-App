@@ -74,8 +74,10 @@ public class NoteListAdapter extends ArrayAdapter<NoteEntity> {
             @Override
             public void onClick(View view) {
                 String noteContent = tvwContent.getText().toString();
+                String noteCreatedDate = tvwCreatedDate.getText().toString();
 
                 Intent intent = new Intent(innerContext, NoteSharingActivity.class);
+                intent.putExtra("NoteCreatedDate", noteCreatedDate);
                 intent.putExtra("NoteContent", noteContent);
                 innerContext.startActivity(intent);
             }

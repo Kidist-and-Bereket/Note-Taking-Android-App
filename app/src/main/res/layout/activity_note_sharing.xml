@@ -13,12 +13,13 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <ImageButton
-            android:id="@+id/imgbtnSendEmail"
+        <Button
+            android:id="@+id/btnSendEmail"
             android:layout_width="150dp"
             android:layout_height="120dp"
             android:layout_weight="1"
             android:scaleType="fitXY"
+            android:text="Email"
             app:srcCompat="@drawable/email" />
 
         <ImageButton
