@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_margin="10dp"
+    android:layout_margin="5dp"
     tools:context=".NoteSharingActivity">
 
     <LinearLayout
@@ -19,16 +19,15 @@
             android:layout_height="120dp"
             android:layout_weight="1"
             android:scaleType="fitXY"
-            android:text="Email"
-            app:srcCompat="@drawable/email" />
+            android:text="Email" />
 
-        <ImageButton
+        <Button
             android:id="@+id/imgbtnSendSMS"
             android:layout_width="150dp"
             android:layout_height="120dp"
             android:layout_weight="1"
             android:scaleType="fitXY"
-            app:srcCompat="@drawable/sms" />
+            android:text="SMS"/>
 
         <Button
             android:id="@+id/btnShareFacebook"
@@ -54,21 +53,34 @@
             android:scaleType="fitXY"
             android:text="Twitter" />
 
-        <ImageButton
+        <Button
+            android:id="@+id/btnShareTelegram"
+            android:layout_width="150dp"
+            android:layout_height="120dp"
+            android:layout_weight="1"
+            android:text="Telegram" />
+
+        <Button
             android:id="@+id/imgbtnShareInstagram"
             android:layout_width="150dp"
             android:layout_height="120dp"
             android:layout_weight="1"
-            android:scaleType="fitXY"
-            app:srcCompat="@drawable/instagram" />
+            android:text="Instagram" />
 
-        <ImageButton
-            android:id="@+id/imgbtnShareLinkedin"
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnShareLinkedin"
             android:layout_width="150dp"
             android:layout_height="120dp"
             android:layout_weight="1"
             android:scaleType="fitXY"
-            app:srcCompat="@drawable/linkedin" />
+            android:text="Linkedin" />
 
     </LinearLayout>
 </LinearLayout>
