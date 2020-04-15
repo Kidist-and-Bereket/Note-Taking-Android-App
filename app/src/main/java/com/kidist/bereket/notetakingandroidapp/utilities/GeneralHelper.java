@@ -38,12 +38,12 @@ public class GeneralHelper {
         }
     }
 
-    private static Intent GetTwitterPostActivity(Intent tweetIntent, Context context){
+    private static Intent GetApplicationPostActivity(String activityName, Intent tweetIntent, Context context){
         PackageManager packManager = context.getPackageManager();
-        List<ResolveInfo> resolvedInfoList = packManager.queryIntentActivities(tweetIntent,  PackageManager.MATCH_DEFAULT_ONLY);
+        List<ResolveInfo> resolvedInfoList = packManager.queryIntentActivities(tweetIntent,  PackageManager.MATCH_ALL);
 
         for(ResolveInfo resolveInfo: resolvedInfoList){
-            if(resolveInfo.activityInfo.packageName.startsWith("com.twitter.android")){
+            if(resolveInfo.activityInfo.packageName.startsWith(activityName)){
                 tweetIntent.setClassName(
                         resolveInfo.activityInfo.packageName,
                         resolveInfo.activityInfo.name );
@@ -65,38 +65,42 @@ public class GeneralHelper {
         }
     }
 
-    public static void GetTwitterIntentAppOrWebsite(Context context, String shareText)
+    public static void ShareMessageOnTwitter(Context context, String msg)
     {
-        Intent shareIntent;
-
-        if(IsPackageExist(context, "com.twitter.android"))
+        final String appName = "com.twitter.android";
+        final boolean result = IsPackageExist(context.getApplicationContext(), appName);
+        if (result)
         {
-            shareIntent = new Intent(Intent.ACTION_SEND);
-            shareIntent.setClassName("com.twitter.android",
-                    "com.twitter.android.PostActivity");
-            shareIntent.setType("text/plain");
-            shareIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareText);
+            Intent myIntent = new Intent(Intent.ACTION_SEND);
+            myIntent.setType("text/plain");
+            myIntent.setPackage(appName);
+            myIntent.putExtra(Intent.EXTRA_TEXT, msg);//
 
-            shareIntent = GetTwitterPostActivity(shareIntent, context);
-            if(shareIntent != null){
-                context.startActivity(shareIntent);
-            }
-            else{
-                OpenTwitterOnline(context, shareText);
-            }
+            context.startActivity(Intent.createChooser(myIntent, "Share with"));
         }
         else
         {
-            OpenTwitterOnline(context, shareText);
+            Toast.makeText(context, "Telegram not Installed", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private static void OpenTwitterOnline(Context context, String shareText){
-        String tweetUrl = "https://twitter.com/intent/tweet?text=" + shareText;
-        Uri uri = Uri.parse(tweetUrl);
-        Intent shareIntent = new Intent(Intent.ACTION_SEND);
-        shareIntent = new Intent(Intent.ACTION_VIEW, uri);
-        context.startActivity(Intent.createChooser(shareIntent, "Tweet your note . . ."));
+    public static void ShareMessageOnTelegram(Context context, String msg)
+    {
+        final String appName = "org.telegram.messenger";
+        final boolean result = IsPackageExist(context.getApplicationContext(), appName);
+        if (result)
+        {
+            Intent myIntent = new Intent(Intent.ACTION_SEND);
+            myIntent.setType("text/plain");
+            myIntent.setPackage(appName);
+            myIntent.putExtra(Intent.EXTRA_TEXT, msg);//
+
+            context.startActivity(Intent.createChooser(myIntent, "Share with"));
+        }
+        else
+        {
+            Toast.makeText(context, "Telegram not Installed", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public static Bitmap ChangeGivenTextToBitmap(String text) throws IOException {
