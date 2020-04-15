@@ -10,6 +10,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.net.Uri;
+import android.os.Build;
 import android.widget.Toast;
 
 import com.kidist.bereket.notetakingandroidapp.NoteSharingActivity;
@@ -80,11 +81,37 @@ public class GeneralHelper {
         }
         else
         {
-            Toast.makeText(context, "Telegram not Installed", Toast.LENGTH_SHORT).show();
+            OpenTwitterOnline(context, msg);
         }
     }
 
-    public static void ShareMessageOnTelegram(Context context, String msg)
+    private static void OpenTwitterOnline(Context context, String shareText){
+        String tweetUrl = "https://twitter.com/intent/tweet?text=" + shareText;
+        Uri uri = Uri.parse(tweetUrl);
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent = new Intent(Intent.ACTION_VIEW, uri);
+        context.startActivity(Intent.createChooser(shareIntent, "Tweet your note . . ."));
+    }
+
+    public static void ShareMessageUsingSMS(Context context, String message){
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN){
+            Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+            sendIntent.setData(Uri.parse("sms:"));
+            sendIntent.putExtra("sms_body", message);
+
+            context.startActivity(sendIntent);
+        }
+        else{
+            Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+            sendIntent.setType("vnd.android-dir/mms-sms");
+            sendIntent.putExtra("sms_body",message);
+
+            context.startActivity(sendIntent);
+        }
+    }
+
+    public static void ShareMessageOnTelegram(Context context, String message)
     {
         final String appName = "org.telegram.messenger";
         final boolean result = IsPackageExist(context.getApplicationContext(), appName);
@@ -93,7 +120,7 @@ public class GeneralHelper {
             Intent myIntent = new Intent(Intent.ACTION_SEND);
             myIntent.setType("text/plain");
             myIntent.setPackage(appName);
-            myIntent.putExtra(Intent.EXTRA_TEXT, msg);//
+            myIntent.putExtra(Intent.EXTRA_TEXT, message);//
 
             context.startActivity(Intent.createChooser(myIntent, "Share with"));
         }
