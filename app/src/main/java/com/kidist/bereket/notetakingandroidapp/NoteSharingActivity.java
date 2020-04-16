@@ -31,7 +31,7 @@ import java.io.IOException;
 
 public class NoteSharingActivity extends Activity implements View.OnClickListener {
 
-    Button btnShareFacebook, btnSendEmail, btnShareTwitter, btnShareTelegram, btnSendSMS;
+    Button btnShareFacebook, btnSendEmail, btnShareTwitter, btnShareTelegram, btnSendSMS, btnShareLinkedIn;
     String NoteCreatedDate, NoteContentToShare;
 
     Context context;
@@ -53,6 +53,8 @@ public class NoteSharingActivity extends Activity implements View.OnClickListene
         btnShareTelegram.setOnClickListener(this);
         btnSendSMS = findViewById(R.id.btnSendSMS);
         btnSendSMS.setOnClickListener(this);
+        btnShareLinkedIn = findViewById(R.id.btnShareLinkedIn);
+        btnShareLinkedIn.setOnClickListener(this);
 
         NoteCreatedDate = getIntent().getStringExtra("NoteCreatedDate");
         NoteContentToShare = getIntent().getStringExtra("NoteContent");
@@ -90,6 +92,9 @@ public class NoteSharingActivity extends Activity implements View.OnClickListene
         }
         else if(v.getId() == btnSendSMS.getId()){
             GeneralHelper.ShareMessageUsingSMS(this, NoteContentToShare);
+        }
+        else if(v.getId() == btnShareLinkedIn.getId()){
+            GeneralHelper.ShareMessageOnLinkedIn(this, NoteContentToShare);
         }
     }
 

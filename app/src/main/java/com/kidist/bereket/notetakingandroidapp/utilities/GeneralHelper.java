@@ -93,6 +93,14 @@ public class GeneralHelper {
         context.startActivity(Intent.createChooser(shareIntent, "Tweet your note . . ."));
     }
 
+    private static void OpenLinkedInOnline(Context context, String shareText){
+        String tweetUrl = "https://www.linkedin.com";
+        Uri uri = Uri.parse(tweetUrl);
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent = new Intent(Intent.ACTION_VIEW, uri);
+        context.startActivity(Intent.createChooser(shareIntent, "Tweet your note . . ."));
+    }
+
     public static void ShareMessageUsingSMS(Context context, String message){
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN){
@@ -132,26 +140,22 @@ public class GeneralHelper {
 
     public static void ShareMessageOnLinkedIn(Context context, String message)
     {
-
-        final String appName = "com.linkedin.android";
-        final boolean result = IsPackageExist(context.getApplicationContext(), appName);
-        if (result)
-        {
-            Intent linkedinIntent = new Intent(Intent.ACTION_VIEW);
-            linkedinIntent.setClassName("com.linkedin.android", "com.linkedin.android.profile.ViewProfileActivity");
-            context.startActivity(linkedinIntent);
+        OpenLinkedInOnline(context, message);
 //
-//            Intent myIntent = new Intent(Intent.ACTION_SEND);
-//            myIntent.setType("text/plain");
-//            myIntent.setPackage(appName);
-//            myIntent.putExtra(Intent.EXTRA_TEXT, message);//
-//
-//            context.startActivity(Intent.createChooser(myIntent, "Share with"));
-        }
-        else
-        {
-            Toast.makeText(context, "Telegram not Installed", Toast.LENGTH_SHORT).show();
-        }
+//        final String appName = "com.linkedin.android";
+//        final boolean result = IsPackageExist(context.getApplicationContext(), appName);
+//        if (result)
+//        {
+//            Intent linkedinIntent = new Intent(Intent.ACTION_VIEW);
+//            linkedinIntent.setType("text/plain");
+//            linkedinIntent.setPackage(appName);
+//            context.startActivity(linkedinIntent);
+//        }
+//        else
+//        {
+//            OpenLinkedInOnline(context, message);
+//            //Toast.makeText(context, "Telegram not Installed", Toast.LENGTH_SHORT).show();
+//        }
     }
 
     public static Bitmap ChangeGivenTextToBitmap(String text) throws IOException {
