@@ -130,6 +130,30 @@ public class GeneralHelper {
         }
     }
 
+    public static void ShareMessageOnLinkedIn(Context context, String message)
+    {
+
+        final String appName = "com.linkedin.android";
+        final boolean result = IsPackageExist(context.getApplicationContext(), appName);
+        if (result)
+        {
+            Intent linkedinIntent = new Intent(Intent.ACTION_VIEW);
+            linkedinIntent.setClassName("com.linkedin.android", "com.linkedin.android.profile.ViewProfileActivity");
+            context.startActivity(linkedinIntent);
+//
+//            Intent myIntent = new Intent(Intent.ACTION_SEND);
+//            myIntent.setType("text/plain");
+//            myIntent.setPackage(appName);
+//            myIntent.putExtra(Intent.EXTRA_TEXT, message);//
+//
+//            context.startActivity(Intent.createChooser(myIntent, "Share with"));
+        }
+        else
+        {
+            Toast.makeText(context, "Telegram not Installed", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     public static Bitmap ChangeGivenTextToBitmap(String text) throws IOException {
         Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         paint.setTextSize((float) 40);

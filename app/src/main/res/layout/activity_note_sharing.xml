@@ -68,19 +68,4 @@
             android:text="Instagram" />
 
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btnShareLinkedin"
-            android:layout_width="150dp"
-            android:layout_height="120dp"
-            android:layout_weight="1"
-            android:scaleType="fitXY"
-            android:text="Linkedin" />
-
-    </LinearLayout>
 </LinearLayout>
