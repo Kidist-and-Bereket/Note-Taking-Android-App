@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -90,10 +91,15 @@ public class NoteListAdapter extends ArrayAdapter<NoteEntity> {
                 final String noteID = tvwCreatedDate.getTag().toString();
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(innerContext);
-                builder.setMessage("Are you sure you want to delete?")
+
+                String message = innerContext.getString(R.string.text_delete_confirmation);
+                String appName = innerContext.getString(R.string.app_name);
+                String yes = innerContext.getString(R.string.text_positive_action);
+                String no = innerContext.getString(R.string.text_negative_action);
+
+                builder.setMessage(message)
                         .setCancelable(false)
-                        .setTitle("Note Taking")
-                        .setPositiveButton("Yes",
+                        .setPositiveButton(yes,
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
                                         DeleteNote(Integer.parseInt(noteID));
@@ -103,7 +109,7 @@ public class NoteListAdapter extends ArrayAdapter<NoteEntity> {
                                         innerContext.startActivity(intent);
                                     }
                                 })
-                        .setNegativeButton("No",
+                        .setNegativeButton(no,
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
                                         // cancel the dialog box

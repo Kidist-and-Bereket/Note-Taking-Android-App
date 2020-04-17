@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:layout_margin="5dp"
     tools:context=".NoteSharingActivity">
 
     <LinearLayout
@@ -14,27 +15,33 @@
 
         <Button
             android:id="@+id/btnSendEmail"
-            android:layout_width="150dp"
-            android:layout_height="120dp"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
             android:scaleType="fitXY"
-            android:text="Email" />
+            android:layout_margin="5dp"
+            android:background="@drawable/sharing_button_layout"
+            android:text="@string/text_email" />
 
         <Button
             android:id="@+id/btnSendSMS"
-            android:layout_width="150dp"
-            android:layout_height="120dp"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
             android:scaleType="fitXY"
-            android:text="SMS"/>
+            android:layout_margin="5dp"
+            android:background="@drawable/sharing_button_layout"
+            android:text="@string/text_sms"/>
 
         <Button
             android:id="@+id/btnShareFacebook"
-            android:layout_width="150dp"
-            android:layout_height="120dp"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
             android:scaleType="fitXY"
-            android:text="Facebook"/>
+            android:layout_margin="5dp"
+            android:background="@drawable/sharing_button_layout"
+            android:text="@string/text_facebook"/>
 
     </LinearLayout>
 
@@ -46,25 +53,31 @@
 
         <Button
             android:id="@+id/btnShareTwitter"
-            android:layout_width="150dp"
-            android:layout_height="120dp"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
             android:scaleType="fitXY"
-            android:text="Twitter" />
+            android:layout_margin="5dp"
+            android:background="@drawable/sharing_button_layout"
+            android:text="@string/text_twitter" />
 
         <Button
             android:id="@+id/btnShareTelegram"
-            android:layout_width="150dp"
-            android:layout_height="120dp"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
-            android:text="Telegram" />
+            android:layout_margin="5dp"
+            android:background="@drawable/sharing_button_layout"
+            android:text="@string/text_telegram" />
 
         <Button
             android:id="@+id/btnShareLinkedIn"
-            android:layout_width="150dp"
-            android:layout_height="120dp"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
-            android:text="LinkedIn" />
+            android:layout_margin="5dp"
+            android:background="@drawable/sharing_button_layout"
+            android:text="@string/text_linkedin" />
 
     </LinearLayout>
 </LinearLayout>

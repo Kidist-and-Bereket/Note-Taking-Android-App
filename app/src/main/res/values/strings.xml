@@ -1,20 +1,32 @@
 <resources>
-    <string name="app_name">Note Taking</string>
+    <string name="app_name">ማስታወሻ መያዣ</string>
     <string name="facebook_app_id">174404386962734</string>
 
-    <string name="title_activity_list_of_note">ListOfNoteActivity</string>
+    <string name="title_activity_list_of_note">የማስታወሻዎች ዝርዝር</string>
 
-    <string name="designed_and_developed_by">Designed and Developed by:</string>
-    <string name="developer_name_1">Kidist Birhanu</string>
-    <string name="developer_name_2">Bereket Tolcha</string>
-    <string name="home_page_banner">Note taking app Banner</string>
-    <string name="text_manage_note">Manage Note</string>
-    <string name="btn_save">Save</string>
-    <string name="btn_cancel">Cancel</string>
+    <string name="designed_and_developed_by">ያሰቡትና ያዘጋጁት:</string>
+    <string name="developer_name_1">ቅድስት ብርሃኑ </string>
+    <string name="developer_name_2"> በረከት ቶልቻ</string>
+    <string name="home_page_banner">ማሳታወሻ መያዣ አፕሊኬሽን</string>
+    <string name="text_manage_note">ማስታወሻ አስተዳደር</string>
+    <string name="btn_save">አስቀምጥ</string>
+    <string name="btn_cancel">ዝጋ</string>
     <string name="text_id">Id:</string>
     <string name="text_created_date">Created Date:</string>
     <string name="text_content">Content:</string>
     <string name="text_edit">Edit</string>
     <string name="text_share">Share</string>
     <string name="text_delete">Delete</string>
+    <string name="text_email">ኢሜይል</string>
+    <string name="text_sms">ሜሴጅ</string>
+    <string name="text_facebook">ፌስቡክ</string>
+    <string name="text_twitter">ትዊተር</string>
+    <string name="text_telegram">ቴሌግራም</string>
+    <string name="text_linkedin">ሊንክዲን</string>
+
+    <string name="text_positive_action">አዎ አመሰግናለው</string>
+    <string name="text_negative_action">አልፈልግም ይቅርታ</string>
+
+    <string name="text_save_validation">እባክዎ ምን እንደማስቀምጥ ይንገሩኝ</string>
+    <string name="text_delete_confirmation">እርግጠኝ ነዎት ማጥፋት ይፈልጋሉ?</string>
 </resources>

@@ -59,7 +59,8 @@ public class ManageNoteActivity extends Activity implements View.OnClickListener
     public void onClick(View v) {
         if(v.getId() == btnSave.getId()){
             if(edtNote.getText().toString().trim().equals("")){
-                Snackbar.make(linearLayout, "Please type something before saving.", Snackbar.LENGTH_LONG).show();
+                String message = context.getString(R.string.text_save_validation);
+                Snackbar.make(linearLayout, message, Snackbar.LENGTH_LONG).show();
             }
             else{
                 if(NoteID != null && !NoteID.equals("")){
